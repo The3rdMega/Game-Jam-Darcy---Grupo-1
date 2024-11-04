@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://ny47f1ps8hd5"]
+
+[ext_resource type="Texture2D" uid="uid://bgl26fycjqk1w" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/ghost.png" id="1_v7d2l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isxjo"]
+atlas = ExtResource("1_v7d2l")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r173i"]
+atlas = ExtResource("1_v7d2l")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtt0b"]
+atlas = ExtResource("1_v7d2l")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqiyr"]
+atlas = ExtResource("1_v7d2l")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qu4g0"]
+atlas = ExtResource("1_v7d2l")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8im0"]
+atlas = ExtResource("1_v7d2l")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_abnqr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isxjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r173i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtt0b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqiyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qu4g0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8im0")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="GhostPlayer" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_abnqr")
+animation = &"Idle"
