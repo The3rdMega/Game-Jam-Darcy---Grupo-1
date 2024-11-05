@@ -50,6 +50,7 @@ func Ghost():
 		animator.animation = "Ghost"
 		initialPosition = position
 		collider.disabled = true
+		
 	else:
 		##VIRAR HUMANO
 		collider.disabled = false

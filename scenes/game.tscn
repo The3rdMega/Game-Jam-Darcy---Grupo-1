@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cby1k0wccyf2p" path="res://scenes/player.tscn" id="1_s15gj"]
 [ext_resource type="Texture2D" uid="uid://cht1lh48vtwbv" path="res://assets/tileset/cavesofgallet_tiles.png" id="2_wf6xm"]
-[ext_resource type="PackedScene" uid="uid://bd7gdmtvjd8j7" path="res://scenes/enemy.tscn" id="3_0cst4"]
+[ext_resource type="PackedScene" uid="uid://d3ae7hni41b1b" path="res://scenes/enemy.tscn" id="3_0cst4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ej7a5"]
 texture = ExtResource("2_wf6xm")

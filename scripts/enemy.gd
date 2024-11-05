@@ -6,6 +6,8 @@ var player = null
 
 func _ready() -> void:
 	player_chase = false
+	
+	
 func _physics_process(delta: float) -> void:
 	
 	if player_chase:
@@ -22,4 +24,15 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
 	if(body.name == "Player"):
+		player_chase = false
+
+
+func _on_detection_area_area_entered(area: Area2D) -> void:
+	if (area.get_parent().name == "Player"):
+		player = area.get_parent()
+		player_chase = true
+
+func _on_detection_area_area_exited(area: Area2D) -> void:
+	if (area.get_parent().name == "Player"):
+		player = null
 		player_chase = false
