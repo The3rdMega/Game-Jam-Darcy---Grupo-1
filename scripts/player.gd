@@ -79,8 +79,8 @@ func PlayerControl(delta:float):
 		dirX = 1
 	if Input.is_key_pressed(KEY_SHIFT) and canDash:
 		dash(dirX)
-
 	move_and_slide()
+	
 func GhostControl():
 	velocity*=0.8
 	if Input.is_key_pressed(KEY_A):
@@ -110,3 +110,4 @@ func dashTimeout():
 
 
 #NGMASOIPDFNHIOASPNAOIPSDANSIOPASOIPDHNASDOPIKHNASDOIP
+#mano, fica queto com esses gritos ai

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d3ae7hni41b1b"]
+[gd_scene load_steps=21 format=3 uid="uid://bd7gdmtvjd8j7"]
 
 [ext_resource type="Texture2D" uid="uid://cucvarhji6lj5" path="res://assets/sprites_inimigos/characters/slime.png" id="1_0k54l"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_llk4v"]
@@ -132,7 +132,8 @@ radius = 36.0139
 [sub_resource type="CircleShape2D" id="CircleShape2D_3hdtn"]
 radius = 7.0
 
-[node name="enemy" type="CharacterBody2D"]
+[node name="enemy" type="RigidBody2D"]
+lock_rotation = true
 script = ExtResource("1_llk4v")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
