@@ -1,44 +1,52 @@
-[gd_scene load_steps=7 format=3 uid="uid://ijnkbo173o1e"]
+[gd_scene load_steps=8 format=3 uid="uid://be0m5ieb8uxjn"]
 
 [ext_resource type="Texture2D" uid="uid://clysul1maq6fs" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier-Death.png" id="1_0r154"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xg2rf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogmrp"]
 atlas = ExtResource("1_0r154")
 region = Rect2(0, 0, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e1q0f"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xaj3"]
 atlas = ExtResource("1_0r154")
 region = Rect2(100, 0, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kcufc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2lnd"]
 atlas = ExtResource("1_0r154")
 region = Rect2(200, 0, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lu8p6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6arcb"]
 atlas = ExtResource("1_0r154")
 region = Rect2(300, 0, 100, 100)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_vu5f6"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_486mk"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xg2rf")
+"texture": SubResource("AtlasTexture_ogmrp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e1q0f")
+"texture": SubResource("AtlasTexture_8xaj3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kcufc")
+"texture": SubResource("AtlasTexture_h2lnd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lu8p6")
+"texture": SubResource("AtlasTexture_6arcb")
 }],
 "loop": false,
-"name": &"Death",
+"name": &"Dead",
 "speed": 5.0
 }]
 
-[node name="DeadSprite" type="AnimatedSprite2D"]
-sprite_frames = SubResource("SpriteFrames_vu5f6")
-animation = &"Death"
-autoplay = "Death"
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ns2db"]
+size = Vector2(20, 13)
+
+[node name="dead_sprite" type="RigidBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_486mk")
+animation = &"Dead"
+autoplay = "Dead"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ns2db")
