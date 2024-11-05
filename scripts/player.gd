@@ -8,6 +8,8 @@ var Is_ghost = false
 var initialPosition: Vector2
 var nextTimetToTransform: float
 
+
+var rising = false
 var animator: AnimatedSprite2D
 func _ready() -> void:
 	animator = get_node("AnimatedSprite2D")
@@ -17,7 +19,8 @@ func _physics_process(delta: float) -> void:
 	if(Is_ghost):
 		GhostControl()
 	else:
-		PlayerControl(delta)
+		if not rising:
+			PlayerControl(delta)
 	# Add the gravity.
 	
 	if(Input.is_action_just_released("f")):
@@ -32,20 +35,25 @@ func Ghost():
 		##VIRAR GHOST
 		spawnDead = deadSprite.instantiate()
 		get_parent().add_child(spawnDead)
+		spawnDead.z_index = -1
 		spawnDead.global_position = position
 		spawnDead.global_position += Vector2(0, -6)
 		animator.animation = "Ghost"
 		initialPosition = position
+		get_node("CollisionShape2D").disabled = true
 	else:
 		##VIRAR HUMANO
+		get_node("CollisionShape2D").disabled = false
+		rising = true
 		spawnDead.queue_free()
 		position = initialPosition
-		animator.animation = "Idle"
+		$AnimatedSprite2D.play("Rise")
+		#_on_animated_sprite_2d_animation_finished("Rise")
 	Is_ghost = !Is_ghost
 		
 
 func PlayerControl(delta:float):
-	velocity.x*=0.8
+	velocity.x*=0.5
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -70,3 +78,13 @@ func GhostControl():
 		velocity.y += SPEED/2
 	move_and_slide()
 	
+
+
+
+
+
+func _on_animated_sprite_2d_animation_finished():
+	print("ENTERED")
+	if 	$AnimatedSprite2D.animation == "Rise":
+		rising = false
+		$AnimatedSprite2D.play("Idle")
