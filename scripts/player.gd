@@ -7,6 +7,11 @@ const GHOST_DELAY = 5
 var Is_ghost = false
 var initialPosition: Vector2
 var nextTimetToTransform: float
+
+var animator: AnimatedSprite2D
+func _ready() -> void:
+	animator = get_node("AnimatedSprite2D")
+	
 func _physics_process(delta: float) -> void:
 	
 	if(Is_ghost):
@@ -22,8 +27,12 @@ func _physics_process(delta: float) -> void:
 
 func Ghost():
 	if(Is_ghost):
+		##VIRAR HUMANO
 		position = initialPosition
+		animator.animation = "Idle"
 	else:
+		##VIRAR GHOST
+		animator.animation = "Ghost"
 		initialPosition = position
 	Is_ghost = !Is_ghost
 		
