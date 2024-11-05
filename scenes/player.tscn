@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cby1k0wccyf2p"]
+[gd_scene load_steps=12 format=3 uid="uid://cby1k0wccyf2p"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_vf0wm"]
 [ext_resource type="Texture2D" uid="uid://cxb3luhtx0tsc" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier-Idle.png" id="1_yr1p0"]
+[ext_resource type="Texture2D" uid="uid://bsqpcd40f8vas" path="res://icon.svg" id="2_hgur3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l38ma"]
 atlas = ExtResource("1_yr1p0")
@@ -29,6 +30,14 @@ region = Rect2(500, 0, 100, 100)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_icxhm"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hgur3")
+}],
+"loop": true,
+"name": &"Ghost",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l38ma")
@@ -63,10 +72,8 @@ script = ExtResource("1_vf0wm")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_icxhm")
-animation = &"Idle"
+animation = &"Ghost"
 autoplay = "Idle"
-frame = 2
-frame_progress = 0.778179
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
