@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://0if5jhhhvbir"]
+
+[ext_resource type="Texture2D" uid="uid://clysul1maq6fs" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier-Death.png" id="1_0r154"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xg2rf"]
+atlas = ExtResource("1_0r154")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1q0f"]
+atlas = ExtResource("1_0r154")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcufc"]
+atlas = ExtResource("1_0r154")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu8p6"]
+atlas = ExtResource("1_0r154")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vu5f6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xg2rf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1q0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcufc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu8p6")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}]
+
+[node name="DeadSprite" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_vu5f6")
+animation = &"Death"
+autoplay = "Death"

@@ -22,18 +22,25 @@ func _physics_process(delta: float) -> void:
 	
 	if(Input.is_action_just_released("f")):
 		Ghost()
+
  	
-
-
+var deadSprite = load("res://scenes/dead_sprite.tscn")
+var spawnDead = deadSprite.instantiate()
 func Ghost():
-	if(Is_ghost):
-		##VIRAR HUMANO
-		position = initialPosition
-		animator.animation = "Idle"
-	else:
+	var alreadyDead = null
+	if(not Is_ghost):
 		##VIRAR GHOST
+		spawnDead = deadSprite.instantiate()
+		get_parent().add_child(spawnDead)
+		spawnDead.global_position = position
+		spawnDead.global_position += Vector2(0, -6)
 		animator.animation = "Ghost"
 		initialPosition = position
+	else:
+		##VIRAR HUMANO
+		spawnDead.queue_free()
+		position = initialPosition
+		animator.animation = "Idle"
 	Is_ghost = !Is_ghost
 		
 
