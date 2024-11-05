@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 15.0
+const SPEED = 25.0
 const JUMP_VELOCITY = -300.0
 const GHOST_DELAY = 5
 var Is_ghost = false
@@ -84,13 +84,13 @@ func PlayerControl(delta:float):
 func GhostControl():
 	velocity*=0.8
 	if Input.is_key_pressed(KEY_A):
-		velocity.x += -SPEED/2
+		velocity.x += -SPEED
 	if Input.is_key_pressed(KEY_D):
-		velocity.x += SPEED/2
+		velocity.x += SPEED
 	if Input.is_key_pressed(KEY_W):
-		velocity.y += -SPEED/2
+		velocity.y += -SPEED
 	if Input.is_key_pressed(KEY_S):
-		velocity.y += SPEED/2
+		velocity.y += SPEED
 	move_and_slide()
 
 func _on_animated_sprite_2d_animation_finished():
@@ -99,7 +99,6 @@ func _on_animated_sprite_2d_animation_finished():
 		rising = false
 		$AnimatedSprite2D.play("Idle")
 func dash(direction:int):
-	print("shimishimeishimeishimiai drake swalalalala")
 	velocity.x+= (30*SPEED*direction)
 	dash_timer.start()
 	canDash = false	
