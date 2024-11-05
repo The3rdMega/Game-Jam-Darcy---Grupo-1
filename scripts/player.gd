@@ -106,3 +106,7 @@ func dash(direction:int):
 func dashTimeout():
 	canDash = true
 	print("not")
+
+
+
+#NGMASOIPDFNHIOASPNAOIPSDANSIOPASOIPDHNASDOPIKHNASDOIP
