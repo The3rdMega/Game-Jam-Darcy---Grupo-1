@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://3maok8bgxv8d"]
+[gd_scene load_steps=6 format=3 uid="uid://3maok8bgxv8d"]
 
 [ext_resource type="PackedScene" uid="uid://cby1k0wccyf2p" path="res://scenes/player.tscn" id="1_s15gj"]
 [ext_resource type="Texture2D" uid="uid://cht1lh48vtwbv" path="res://assets/tileset/cavesofgallet_tiles.png" id="2_wf6xm"]
+[ext_resource type="PackedScene" uid="uid://d3ae7hni41b1b" path="res://scenes/enemy.tscn" id="3_0cst4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ej7a5"]
 texture = ExtResource("2_wf6xm")
@@ -144,3 +145,6 @@ layer_0/tile_data = PackedInt32Array(65531, 65536, 1, 65532, 65536, 1, 65533, 65
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
+
+[node name="enemy" parent="." instance=ExtResource("3_0cst4")]
+position = Vector2(127, -6)
