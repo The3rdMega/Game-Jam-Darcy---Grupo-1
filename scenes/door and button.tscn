@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvmtb2kdstd8m"]
+
+[ext_resource type="Texture2D" path="res://assets/Barriers/Door_Closed.png" id="1_0pagb"]
+[ext_resource type="Script" path="res://scripts/door.gd" id="1_gvffj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7g20l"]
+size = Vector2(7, 24)
+
+[node name="Door" type="StaticBody2D"]
+script = ExtResource("1_gvffj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -12)
+texture = ExtResource("1_0pagb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.5, -12)
+shape = SubResource("RectangleShape2D_7g20l")

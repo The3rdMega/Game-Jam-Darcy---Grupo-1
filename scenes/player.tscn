@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://cby1k0wccyf2p"]
+[gd_scene load_steps=25 format=3 uid="uid://cby1k0wccyf2p"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_vf0wm"]
 [ext_resource type="Texture2D" uid="uid://cxb3luhtx0tsc" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier-Idle.png" id="1_yr1p0"]
 [ext_resource type="Texture2D" uid="uid://bgl26fycjqk1w" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/ghost.png" id="2_n0wt7"]
 [ext_resource type="Texture2D" uid="uid://clysul1maq6fs" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier-Death.png" id="4_rjlup"]
+[ext_resource type="FontFile" uid="uid://cjk5tey7eg3l5" path="res://assets/m5x7.ttf" id="5_amynp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cln6g"]
 atlas = ExtResource("2_n0wt7")
@@ -151,7 +152,7 @@ script = ExtResource("1_vf0wm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_icxhm")
-animation = &"Jump"
+animation = &"Idle"
 autoplay = "Idle"
 offset = Vector2(0, -7)
 
@@ -161,14 +162,39 @@ visibility_layer = 3
 position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_qxqu6")
 
-[node name="Area2D" type="Area2D" parent="."]
-light_mask = 16
-visibility_layer = 16
+[node name="InteractionComponents" type="Node2D" parent="."]
+z_index = 1
 position = Vector2(0, -8)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="InteractionArea" type="Area2D" parent="InteractionComponents"]
+light_mask = 16
+visibility_layer = 16
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionComponents/InteractionArea"]
 light_mask = 16
 visibility_layer = 16
 shape = SubResource("CircleShape2D_nsahf")
 
+[node name="InteractionLabel" type="Label" parent="InteractionComponents"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -22.5
+offset_right = 42.0
+offset_bottom = -9.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_amynp")
+text = "test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_area_entered"]
+[connection signal="area_exited" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_area_exited"]

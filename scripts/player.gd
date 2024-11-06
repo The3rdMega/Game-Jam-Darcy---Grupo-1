@@ -13,6 +13,10 @@ var dash_timer: Timer
 var collider:CollisionShape2D
 var rising = false
 var animator: AnimatedSprite2D
+
+@onready var allInteractions = []
+@onready var InteractLabel = $InteractionComponents/InteractionLabel
+
 func _ready() -> void:
 	animator = get_node("AnimatedSprite2D")
 	collider = get_node("CollisionShape2D")
@@ -24,6 +28,9 @@ func _ready() -> void:
 	dash_timer.wait_time = 1.5  
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("Interact"):
+		ExecuteInteraction()
+	
 	
 	if(Is_ghost):
 		GhostControl()
@@ -109,6 +116,28 @@ func dashTimeout():
 	print("not")
 
 
+func _on_interaction_area_area_entered(area: Area2D) -> void:
+	allInteractions.insert(0, area)
+	HandleInteraction()
+	
 
-#NGMASOIPDFNHIOASPNAOIPSDANSIOPASOIPDHNASDOPIKHNASDOIP
-#mano, fica queto com esses gritos ai
+func _on_interaction_area_area_exited(area: Area2D) -> void:
+	allInteractions.erase(area)
+	HandleInteraction()
+
+func HandleInteraction() -> void:
+	if allInteractions:
+		InteractLabel.text = allInteractions[0].interact_label
+	else:
+		InteractLabel.text = ''
+
+signal ButtonPressed
+
+func ExecuteInteraction() -> void:
+	if allInteractions:
+		var cur_interaction = allInteractions[0]
+		match cur_interaction.interact_type:
+			"print_text": print(cur_interaction.interact_value)
+			"emit_signal":
+				if not Is_ghost:
+					ButtonPressed.emit()
