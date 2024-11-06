@@ -61,9 +61,14 @@ func Ghost():
 			Is_ghost = !Is_ghost
 	else:
 		##VIRAR HUMANO
+		while (initialPosition.distance_to(position) > 3):
+			velocity += (initialPosition-position).normalized() * SPEED*8
+			await get_tree().process_frame
+		velocity = Vector2.ZERO
 		collider.disabled = false
 		rising = true
-		spawnDead.queue_free()
+		if is_instance_valid(spawnDead):
+			spawnDead.queue_free()
 		position = initialPosition
 		$AnimatedSprite2D.play("Rise")
 		Is_ghost = !Is_ghost
