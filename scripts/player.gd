@@ -49,15 +49,16 @@ func Ghost():
 	var alreadyDead = null
 	if(not Is_ghost):
 		##VIRAR GHOST
-		spawnDead = deadSprite.instantiate()
-		get_parent().add_child(spawnDead)
-		spawnDead.z_index = -1
-		spawnDead.global_position = position
-		spawnDead.global_position += Vector2(0, -6)
-		animator.animation = "Ghost"
-		initialPosition = position
-		collider.disabled = true
-		
+		if(is_on_floor()):
+			spawnDead = deadSprite.instantiate()
+			get_parent().add_child(spawnDead)
+			spawnDead.z_index = -1
+			spawnDead.global_position = position
+			spawnDead.global_position += Vector2(0, -6)
+			animator.animation = "Ghost"
+			initialPosition = position
+			collider.disabled = true
+			Is_ghost = !Is_ghost
 	else:
 		##VIRAR HUMANO
 		collider.disabled = false
@@ -65,8 +66,9 @@ func Ghost():
 		spawnDead.queue_free()
 		position = initialPosition
 		$AnimatedSprite2D.play("Rise")
+		Is_ghost = !Is_ghost
+
 		#_on_animated_sprite_2d_animation_finished("Rise")
-	Is_ghost = !Is_ghost
 		
 
 func PlayerControl(delta:float):
