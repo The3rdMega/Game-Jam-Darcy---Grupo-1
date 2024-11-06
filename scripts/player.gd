@@ -25,9 +25,16 @@ func _ready() -> void:
 	add_child(dash_timer)
 	dash_timer.one_shot = true
 	dash_timer.connect("timeout",dashTimeout)
-	dash_timer.wait_time = 1.5  
+	dash_timer.wait_time = 0.5  
 
 func _physics_process(delta: float) -> void:
+	if velocity.x < 0:
+		$AnimatedSprite2D.flip_h = true
+	elif velocity.x > 0:
+		$AnimatedSprite2D.flip_h = false
+	
+	
+	
 	if Input.is_action_just_pressed("Interact"):
 		ExecuteInteraction()
 	
@@ -47,7 +54,10 @@ var deadSprite = load("res://scenes/dead_sprite.tscn")
 var spawnDead = deadSprite.instantiate()
 func Ghost():
 	var alreadyDead = null
+	var diedRight = null
+	var diedLeft = null
 	if(not Is_ghost):
+		
 		##VIRAR GHOST
 		if(is_on_floor()):
 			spawnDead = deadSprite.instantiate()
@@ -55,6 +65,15 @@ func Ghost():
 			spawnDead.z_index = 3
 			spawnDead.global_position = position
 			spawnDead.global_position += Vector2(0, -6)
+			if velocity.x < 0:
+				spawnDead.get_node("AnimatedSprite2D").flip_h = true
+				diedLeft = true
+				diedRight = null
+			elif velocity.x > 0:
+				spawnDead.get_node("AnimatedSprite2D").flip_h = false
+				diedLeft = null
+				diedRight = true
+			
 			animator.animation = "Ghost"
 			initialPosition = position
 			collider.disabled = true
@@ -71,12 +90,24 @@ func Ghost():
 			spawnDead.queue_free()
 		position = initialPosition
 		$AnimatedSprite2D.play("Rise")
+		if diedRight:
+			$AnimatedSprite2D.flip_h = false
+			diedLeft = null
+			diedRight = null
+		elif diedLeft:
+			$AnimatedSprite2D.flip_h = true
+			diedLeft = null
+			diedRight = null
 		Is_ghost = !Is_ghost
 
 		#_on_animated_sprite_2d_animation_finished("Rise")
 		
 
 func PlayerControl(delta:float):
+	if Input.is_key_pressed(KEY_D) or Input.is_key_pressed(KEY_A):
+		$AnimatedSprite2D.play("Walk")
+	else:
+		$AnimatedSprite2D.play("Idle")
 	velocity.x*=0.8
 	var dirX = 0 
 	if not is_on_floor():
@@ -109,12 +140,13 @@ func GhostControl():
 	move_and_slide()
 
 func _on_animated_sprite_2d_animation_finished():
-	print("ENTERED")
-	if 	$AnimatedSprite2D.animation == "Rise":
+	if $AnimatedSprite2D.animation == "Rise":
 		rising = false
 		$AnimatedSprite2D.play("Idle")
+
+
 func dash(direction:int):
-	velocity.x+= (30*SPEED*direction)
+	velocity.x+= (15*SPEED*direction)
 	dash_timer.start()
 	canDash = false	
 	
@@ -153,3 +185,8 @@ func ExecuteInteraction() -> void:
 				if Is_ghost:
 					print("emitiu sinal da tocha")
 					TorchPressed.emit()
+
+
+func _on_scene_transition_area_entered(area):
+	if(area.get_parent().name == "Player") and not Is_ghost:
+		get_tree().change_scene_to_file("res://scenes/level_2.tscn")
