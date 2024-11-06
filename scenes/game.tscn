@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://3maok8bgxv8d"]
+[gd_scene load_steps=9 format=3 uid="uid://3maok8bgxv8d"]
 
 [ext_resource type="PackedScene" uid="uid://cby1k0wccyf2p" path="res://scenes/player.tscn" id="1_s15gj"]
 [ext_resource type="Texture2D" uid="uid://cht1lh48vtwbv" path="res://assets/tileset/cavesofgallet_tiles.png" id="2_wf6xm"]
-[ext_resource type="PackedScene" path="res://scenes/enemy.tscn" id="3_0cst4"]
-[ext_resource type="PackedScene" path="res://scenes/door.tscn" id="4_pqyvn"]
+[ext_resource type="PackedScene" uid="uid://d3ae7hni41b1b" path="res://scenes/enemy.tscn" id="3_0cst4"]
+[ext_resource type="PackedScene" uid="uid://coc7t7xo7cxqp" path="res://scenes/door.tscn" id="4_pqyvn"]
 [ext_resource type="PackedScene" uid="uid://dc8p134mw1bv7" path="res://scenes/button.tscn" id="5_nsqsn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ej7a5"]
@@ -135,6 +135,9 @@ tile_size = Vector2i(8, 8)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ej7a5")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqr6m"]
+size = Vector2(20, 32)
+
 [node name="Game" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -167,9 +170,17 @@ position_smoothing_enabled = true
 [node name="enemy" parent="." instance=ExtResource("3_0cst4")]
 position = Vector2(127, -6)
 
+[node name="SCENE TRANSITION" type="Area2D" parent="."]
+position = Vector2(186, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SCENE TRANSITION"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_uqr6m")
+
 [connection signal="area_entered" from="DoorInteraction" to="Player" method="_on_button_area_entered"]
 [connection signal="area_exited" from="DoorInteraction" to="Player" method="_on_button_area_exited"]
 [connection signal="ButtonPressed" from="Player" to="Door" method="_on_player_button_pressed"]
 [connection signal="ButtonPressed" from="Player" to="DoorInteraction" method="_on_player_button_pressed"]
 [connection signal="TorchPressed" from="Player" to="Door" method="_on_player_torch_pressed"]
 [connection signal="TorchPressed" from="Player" to="GhostInteraciton" method="_on_player_torch_pressed"]
+[connection signal="area_entered" from="SCENE TRANSITION" to="Player" method="_on_scene_transition_area_entered"]
