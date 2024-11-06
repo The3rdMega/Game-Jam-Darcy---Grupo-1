@@ -132,12 +132,17 @@ func HandleInteraction() -> void:
 		InteractLabel.text = ''
 
 signal ButtonPressed
+signal TorchPressed
 
 func ExecuteInteraction() -> void:
 	if allInteractions:
 		var cur_interaction = allInteractions[0]
 		match cur_interaction.interact_type:
 			"print_text": print(cur_interaction.interact_value)
-			"emit_signal":
+			"emit_button_signal":
 				if not Is_ghost:
 					ButtonPressed.emit()
+			"emit_torch_signal":
+				if Is_ghost:
+					print("emitiu sinal da tocha")
+					TorchPressed.emit()
