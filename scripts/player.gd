@@ -153,8 +153,3 @@ func ExecuteInteraction() -> void:
 				if Is_ghost:
 					print("emitiu sinal da tocha")
 					TorchPressed.emit()
-
-
-func _on_scene_transition_area_entered(area: Area2D) -> void:
-	if(area.get_parent().name == "Player") and not Is_ghost:
-		get_tree().change_scene_to_file("res://scenes/level_2.tscn")

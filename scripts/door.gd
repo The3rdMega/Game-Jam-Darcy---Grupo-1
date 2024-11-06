@@ -25,3 +25,7 @@ func _on_player_button_pressed() -> void:
 func _on_player_torch_pressed() -> void:
 	Pressed_Torch = !Pressed_Torch
 	OpenDoor()
+
+
+func _on_scene_transition_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.
