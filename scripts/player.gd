@@ -52,7 +52,7 @@ func Ghost():
 		if(is_on_floor()):
 			spawnDead = deadSprite.instantiate()
 			get_parent().add_child(spawnDead)
-			spawnDead.z_index = -1
+			spawnDead.z_index = 3
 			spawnDead.global_position = position
 			spawnDead.global_position += Vector2(0, -6)
 			animator.animation = "Ghost"
@@ -148,3 +148,8 @@ func ExecuteInteraction() -> void:
 				if Is_ghost:
 					print("emitiu sinal da tocha")
 					TorchPressed.emit()
+
+
+func _on_scene_transition_area_entered(area: Area2D) -> void:
+	if(area.get_parent().name == "Player") and not Is_ghost:
+		get_tree().change_scene_to_file("res://scenes/level_2.tscn")

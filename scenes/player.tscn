@@ -193,7 +193,6 @@ offset_bottom = -9.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_amynp")
-text = "test"
 horizontal_alignment = 1
 vertical_alignment = 1
 
