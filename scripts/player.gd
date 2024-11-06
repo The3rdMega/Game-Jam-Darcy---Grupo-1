@@ -13,10 +13,9 @@ var dash_timer: Timer
 var collider:CollisionShape2D
 var rising = false
 var animator: AnimatedSprite2D
-var interag = false
-var interactor: Area2D
-'''@onready var allInteractions = []
-@onready var InteractLabel = $InteractionComponents/InteractionLabel'''
+
+@onready var allInteractions = []
+@onready var InteractLabel = $InteractionComponents/InteractionLabel
 
 func _ready() -> void:
 	animator = get_node("AnimatedSprite2D")
@@ -26,12 +25,20 @@ func _ready() -> void:
 	add_child(dash_timer)
 	dash_timer.one_shot = true
 	dash_timer.connect("timeout",dashTimeout)
-	dash_timer.wait_time = 1.5  
+	dash_timer.wait_time = 0.5  
 
 func _physics_process(delta: float) -> void:
-	if(interactor and Input.is_action_just_released("Interact")):
-		HandleInteraction()
-		
+	if velocity.x < 0:
+		$AnimatedSprite2D.flip_h = true
+	elif velocity.x > 0:
+		$AnimatedSprite2D.flip_h = false
+	
+	
+	
+	if Input.is_action_just_pressed("Interact"):
+		ExecuteInteraction()
+	
+	
 	if(Is_ghost):
 		GhostControl()
 	else:
@@ -47,14 +54,26 @@ var deadSprite = load("res://scenes/dead_sprite.tscn")
 var spawnDead = deadSprite.instantiate()
 func Ghost():
 	var alreadyDead = null
+	var diedRight = null
+	var diedLeft = null
 	if(not Is_ghost):
+		
 		##VIRAR GHOST
 		if(is_on_floor()):
 			spawnDead = deadSprite.instantiate()
 			get_parent().add_child(spawnDead)
-			spawnDead.z_index = -1
+			spawnDead.z_index = 3
 			spawnDead.global_position = position
 			spawnDead.global_position += Vector2(0, -6)
+			if velocity.x < 0:
+				spawnDead.get_node("AnimatedSprite2D").flip_h = true
+				diedLeft = true
+				diedRight = null
+			elif velocity.x > 0:
+				spawnDead.get_node("AnimatedSprite2D").flip_h = false
+				diedLeft = null
+				diedRight = true
+			
 			animator.animation = "Ghost"
 			initialPosition = position
 			collider.disabled = true
@@ -71,12 +90,24 @@ func Ghost():
 			spawnDead.queue_free()
 		position = initialPosition
 		$AnimatedSprite2D.play("Rise")
+		if diedRight:
+			$AnimatedSprite2D.flip_h = false
+			diedLeft = null
+			diedRight = null
+		elif diedLeft:
+			$AnimatedSprite2D.flip_h = true
+			diedLeft = null
+			diedRight = null
 		Is_ghost = !Is_ghost
 
 		#_on_animated_sprite_2d_animation_finished("Rise")
 		
 
 func PlayerControl(delta:float):
+	if Input.is_key_pressed(KEY_D) or Input.is_key_pressed(KEY_A):
+		$AnimatedSprite2D.play("Walk")
+	else:
+		$AnimatedSprite2D.play("Idle")
 	velocity.x*=0.8
 	var dirX = 0 
 	if not is_on_floor():
@@ -88,7 +119,7 @@ func PlayerControl(delta:float):
 	if Input.is_key_pressed(KEY_A):
 		velocity.x += -SPEED
 		dirX = -1
-		
+
 	if Input.is_key_pressed(KEY_D):
 		velocity.x += SPEED
 		dirX = 1
@@ -106,16 +137,16 @@ func GhostControl():
 		velocity.y += -SPEED
 	if Input.is_key_pressed(KEY_S):
 		velocity.y += SPEED
-	
 	move_and_slide()
 
 func _on_animated_sprite_2d_animation_finished():
-	print("ENTERED")
-	if 	$AnimatedSprite2D.animation == "Rise":
+	if $AnimatedSprite2D.animation == "Rise":
 		rising = false
 		$AnimatedSprite2D.play("Idle")
+
+
 func dash(direction:int):
-	velocity.x+= (30*SPEED*direction)
+	velocity.x+= (15*SPEED*direction)
 	dash_timer.start()
 	canDash = false	
 	
@@ -123,26 +154,23 @@ func dashTimeout():
 	canDash = true
 	print("not")
 
-	
-func _on_interaction_area_area_entered(area: Area2D) -> void:
-	if area.has_method("button"):
-		interactor = area
-	
-func _on_interaction_area_area_exited(area: Area2D) -> void:
-	if area == interactor:
-		interactor = null
 
+func _on_interaction_area_area_entered(area: Area2D) -> void:
+	allInteractions.insert(0, area)
+	HandleInteraction()
+	
+
+func _on_interaction_area_area_exited(area: Area2D) -> void:
+	allInteractions.erase(area)
+	HandleInteraction()
 
 func HandleInteraction() -> void:
-	if interactor.has_method("button") and !Is_ghost:
-		interactor.button()
-	if interactor.has_method("button") and Is_ghost:
-		interactor.torch()
-	
+	if allInteractions:
+		InteractLabel.text = allInteractions[0].interact_label
+	else:
+		InteractLabel.text = ''
 
-		
-"""
- ButtonPressed
+signal ButtonPressed
 signal TorchPressed
 
 func ExecuteInteraction() -> void:
@@ -157,4 +185,13 @@ func ExecuteInteraction() -> void:
 				if Is_ghost:
 					print("emitiu sinal da tocha")
 					TorchPressed.emit()
-"""
+
+
+func _on_scene_transition_area_entered(area):
+	if(area.get_parent().name == "Player") and not Is_ghost:
+		get_tree().change_scene_to_file("res://scenes/level_2.tscn")
+
+
+func _on_scene_transition_2_area_entered(area):
+	if(area.get_parent().name == "Player") and not Is_ghost:
+		get_tree().change_scene_to_file("res://scenes/level_3.tscn")
