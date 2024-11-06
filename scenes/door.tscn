@@ -1,13 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://coc7t7xo7cxqp"]
+[gd_scene load_steps=5 format=3 uid="uid://3jx4n1ulgr4v"]
 
 [ext_resource type="Script" path="res://scripts/door.gd" id="1_mrdtq"]
 [ext_resource type="Texture2D" uid="uid://dlt7q0bxeto4c" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Door_Closed.png" id="1_nmxeb"]
+[ext_resource type="Texture2D" uid="uid://cxo6lg3148xx5" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Door_Open.png" id="3_m0krr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwm4x"]
 size = Vector2(8, 24)
 
 [node name="Door" type="StaticBody2D"]
 script = ExtResource("1_mrdtq")
+closed = ExtResource("1_nmxeb")
+open = ExtResource("3_m0krr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -12)
