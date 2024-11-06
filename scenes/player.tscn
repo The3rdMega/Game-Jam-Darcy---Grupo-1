@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cby1k0wccyf2p"]
+[gd_scene load_steps=26 format=3 uid="uid://cby1k0wccyf2p"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_vf0wm"]
 [ext_resource type="Texture2D" uid="uid://cxb3luhtx0tsc" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier-Idle.png" id="1_yr1p0"]
@@ -147,6 +147,8 @@ height = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nsahf"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_iype8"]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_vf0wm")
 
@@ -191,9 +193,14 @@ offset_bottom = -9.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_amynp")
-text = "test"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_iype8")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="InteractionComponents/InteractionArea" to="." method="_on_interaction_area_area_entered"]

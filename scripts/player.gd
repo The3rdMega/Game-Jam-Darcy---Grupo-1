@@ -49,24 +49,31 @@ func Ghost():
 	var alreadyDead = null
 	if(not Is_ghost):
 		##VIRAR GHOST
-		spawnDead = deadSprite.instantiate()
-		get_parent().add_child(spawnDead)
-		spawnDead.z_index = -1
-		spawnDead.global_position = position
-		spawnDead.global_position += Vector2(0, -6)
-		animator.animation = "Ghost"
-		initialPosition = position
-		collider.disabled = true
-		
+		if(is_on_floor()):
+			spawnDead = deadSprite.instantiate()
+			get_parent().add_child(spawnDead)
+			spawnDead.z_index = 3
+			spawnDead.global_position = position
+			spawnDead.global_position += Vector2(0, -6)
+			animator.animation = "Ghost"
+			initialPosition = position
+			collider.disabled = true
+			Is_ghost = !Is_ghost
 	else:
 		##VIRAR HUMANO
+		while (initialPosition.distance_to(position) > 3):
+			velocity += (initialPosition-position).normalized() * SPEED*8
+			await get_tree().process_frame
+		velocity = Vector2.ZERO
 		collider.disabled = false
 		rising = true
-		spawnDead.queue_free()
+		if is_instance_valid(spawnDead):
+			spawnDead.queue_free()
 		position = initialPosition
 		$AnimatedSprite2D.play("Rise")
+		Is_ghost = !Is_ghost
+
 		#_on_animated_sprite_2d_animation_finished("Rise")
-	Is_ghost = !Is_ghost
 		
 
 func PlayerControl(delta:float):
@@ -132,12 +139,22 @@ func HandleInteraction() -> void:
 		InteractLabel.text = ''
 
 signal ButtonPressed
+signal TorchPressed
 
 func ExecuteInteraction() -> void:
 	if allInteractions:
 		var cur_interaction = allInteractions[0]
 		match cur_interaction.interact_type:
 			"print_text": print(cur_interaction.interact_value)
-			"emit_signal":
+			"emit_button_signal":
 				if not Is_ghost:
 					ButtonPressed.emit()
+			"emit_torch_signal":
+				if Is_ghost:
+					print("emitiu sinal da tocha")
+					TorchPressed.emit()
+
+
+func _on_scene_transition_area_entered(area: Area2D) -> void:
+	if(area.get_parent().name == "Player") and not Is_ghost:
+		get_tree().change_scene_to_file("res://scenes/level_2.tscn")
