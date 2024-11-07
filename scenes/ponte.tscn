@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpng2s1r05w1c"]
+
+[ext_resource type="Script" path="res://scripts/bridge.gd" id="1_8h8t0"]
+[ext_resource type="Texture2D" uid="uid://binu12ti7cw0p" path="res://assets/PonteAberta.png" id="2_aouwb"]
+[ext_resource type="Texture2D" uid="uid://ils7244bkob1" path="res://assets/PonteFechada.png" id="3_61ucp"]
+[ext_resource type="PackedScene" uid="uid://mhrp5qyucqar" path="res://scenes/torch.tscn" id="4_c5i3a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwm4x"]
+size = Vector2(64, 8.5)
+
+[node name="ponte" type="StaticBody2D"]
+position = Vector2(88, -11)
+script = ExtResource("1_8h8t0")
+closed = ExtResource("2_aouwb")
+open = ExtResource("3_61ucp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-16, 24)
+scale = Vector2(1.33333, 1)
+texture = ExtResource("2_aouwb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-16, 23.75)
+shape = SubResource("RectangleShape2D_lwm4x")
+
+[node name="torch" parent="." instance=ExtResource("4_c5i3a")]
+position = Vector2(-155, -92)
