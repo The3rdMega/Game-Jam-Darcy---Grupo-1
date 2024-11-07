@@ -1,10 +1,10 @@
-[gd_scene load_steps=23 format=4 uid="uid://by4agkocjxiwh"]
+[gd_scene load_steps=23 format=4 uid="uid://d3kv7k2stksby"]
 
 [ext_resource type="PackedScene" uid="uid://cby1k0wccyf2p" path="res://scenes/player.tscn" id="1_i8tnb"]
 [ext_resource type="Texture2D" uid="uid://cht1lh48vtwbv" path="res://assets/tileset/cavesofgallet_tiles.png" id="2_cuk8o"]
 [ext_resource type="Texture2D" uid="uid://dlt7q0bxeto4c" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Door_Closed.png" id="3_tpetp"]
 [ext_resource type="Texture2D" uid="uid://cxo6lg3148xx5" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Door_Open.png" id="4_pjr4h"]
-[ext_resource type="Script" path="res://scripts/door.gd" id="6_dfje1"]
+[ext_resource type="Script" path="res://scripts/bridge.gd" id="5_0k7ef"]
 [ext_resource type="Texture2D" uid="uid://binu12ti7cw0p" path="res://assets/PonteAberta.png" id="6_vdmde"]
 [ext_resource type="Texture2D" uid="uid://ils7244bkob1" path="res://assets/PonteFechada.png" id="7_ncx4e"]
 [ext_resource type="PackedScene" uid="uid://mhrp5qyucqar" path="res://scenes/torch.tscn" id="8_v8opx"]
@@ -238,14 +238,14 @@ collision_enabled = false
 
 [node name="Door" type="StaticBody2D" parent="."]
 position = Vector2(88, -11)
-script = ExtResource("6_dfje1")
+script = ExtResource("5_0k7ef")
 closed = ExtResource("6_vdmde")
 open = ExtResource("7_ncx4e")
 
 [node name="Sprite2D" type="Sprite2D" parent="Door"]
 position = Vector2(-16, 24)
 scale = Vector2(1.33333, 1)
-texture = ExtResource("7_ncx4e")
+texture = ExtResource("6_vdmde")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 position = Vector2(-16, 23.75)
