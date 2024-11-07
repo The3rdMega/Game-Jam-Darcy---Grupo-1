@@ -1,37 +1,37 @@
-[gd_scene load_steps=8 format=3 uid="uid://be0m5ieb8uxjn"]
+[gd_scene load_steps=8 format=3 uid="uid://ijnkbo173o1e"]
 
-[ext_resource type="Texture2D" uid="uid://clysul1maq6fs" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Characters(100x100)/Soldier/Soldier/Soldier-Death.png" id="1_0r154"]
+[ext_resource type="Texture2D" uid="uid://bi6ff1s783mj4" path="res://assets/SAMURAI PLAYER/Samurai_Death.png" id="1_y6g27"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ogmrp"]
-atlas = ExtResource("1_0r154")
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u2tk"]
+atlas = ExtResource("1_y6g27")
 region = Rect2(0, 0, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8xaj3"]
-atlas = ExtResource("1_0r154")
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnx3x"]
+atlas = ExtResource("1_y6g27")
 region = Rect2(100, 0, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h2lnd"]
-atlas = ExtResource("1_0r154")
+[sub_resource type="AtlasTexture" id="AtlasTexture_lob2b"]
+atlas = ExtResource("1_y6g27")
 region = Rect2(200, 0, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6arcb"]
-atlas = ExtResource("1_0r154")
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4lcg"]
+atlas = ExtResource("1_y6g27")
 region = Rect2(300, 0, 100, 100)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_486mk"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ogmrp")
+"texture": SubResource("AtlasTexture_7u2tk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8xaj3")
+"texture": SubResource("AtlasTexture_rnx3x")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h2lnd")
+"texture": SubResource("AtlasTexture_lob2b")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6arcb")
+"texture": SubResource("AtlasTexture_p4lcg")
 }],
 "loop": false,
 "name": &"Dead",
