@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://nu3k831fc2qy"]
+[gd_scene load_steps=9 format=3 uid="uid://we8yspwt3wpr"]
 
+[ext_resource type="PackedScene" uid="uid://dc8p134mw1bv7" path="res://scenes/button.tscn" id="1_aqvpy"]
 [ext_resource type="Texture2D" uid="uid://cht1lh48vtwbv" path="res://assets/tileset/cavesofgallet_tiles.png" id="1_qoh4j"]
 [ext_resource type="PackedScene" uid="uid://cby1k0wccyf2p" path="res://scenes/player.tscn" id="2_wngy7"]
-[ext_resource type="PackedScene" uid="uid://3jx4n1ulgr4v" path="res://scenes/door.tscn" id="2_ygsbk"]
+[ext_resource type="PackedScene" uid="uid://coc7t7xo7cxqp" path="res://scenes/door.tscn" id="2_ygsbk"]
 [ext_resource type="Texture2D" uid="uid://dlt7q0bxeto4c" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Door_Closed.png" id="3_v7l3u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xpbfh"]
@@ -133,6 +134,20 @@ size = Vector2(9, 24)
 [node name="Level 2" type="Node2D"]
 
 [node name="LevelFolder" type="Node2D" parent="."]
+
+[node name="Torch" parent="LevelFolder" instance=ExtResource("1_aqvpy")]
+z_index = 2
+position = Vector2(-58, -87)
+interact_label = "Press [E]"
+interact_type = "emit_torch_signal"
+interact_value = "it works"
+
+[node name="Button" parent="LevelFolder" instance=ExtResource("1_aqvpy")]
+z_index = 2
+position = Vector2(116, -9)
+interact_label = "Press [E]"
+interact_type = "emit_button_signal"
+interact_value = "it works"
 
 [node name="TileMap" type="TileMap" parent="LevelFolder"]
 tile_set = SubResource("TileSet_5j7gm")
