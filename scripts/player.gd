@@ -17,6 +17,8 @@ var interactor: Area2D
 @onready var allInteractions = []
 @onready var InteractLabel = $InteractionComponents/InteractionLabel
 
+@onready var playerAudioWalk = $AudioWalk
+
 func _ready() -> void:
 	animator = get_node("AnimatedSprite2D")
 	collider = get_node("CollisionShape2D")
@@ -118,10 +120,15 @@ func PlayerControl(delta:float):
 	if Input.is_key_pressed(KEY_A):
 		velocity.x += -SPEED
 		dirX = -1
+		if playerAudioWalk.playing == false and is_on_floor():
+			playerAudioWalk.play()
 
 	if Input.is_key_pressed(KEY_D):
 		velocity.x += SPEED
 		dirX = 1
+		if playerAudioWalk.playing == false and is_on_floor():
+			playerAudioWalk.play()
+			
 	if Input.is_key_pressed(KEY_SHIFT) and canDash:
 		dash(dirX)
 	move_and_slide()
