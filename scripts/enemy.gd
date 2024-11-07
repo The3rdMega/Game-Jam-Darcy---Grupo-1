@@ -53,3 +53,15 @@ func _on_detection_area_area_exited(area: Area2D) -> void:
 	if (area.get_parent().name == "Player"):
 		player = null
 		player_chase = false
+
+
+signal pressure1
+signal pressure0
+
+func _on_pressure_plate_area_entered(area):
+	if (area.get_parent().name == "enemy"):
+		pressure1.emit()
+
+func _on_pressure_plate_area_exited(area):
+	if (area.get_parent().name == "enemy"):
+		pressure0.emit()

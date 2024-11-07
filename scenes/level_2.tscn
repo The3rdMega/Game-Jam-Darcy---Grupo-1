@@ -1,12 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://nu3k831fc2qy"]
+[gd_scene load_steps=17 format=3 uid="uid://nu3k831fc2qy"]
 
 [ext_resource type="Texture2D" uid="uid://cht1lh48vtwbv" path="res://assets/tileset/cavesofgallet_tiles.png" id="1_qoh4j"]
 [ext_resource type="PackedScene" uid="uid://cby1k0wccyf2p" path="res://scenes/player.tscn" id="2_wngy7"]
 [ext_resource type="PackedScene" uid="uid://3jx4n1ulgr4v" path="res://scenes/door.tscn" id="2_ygsbk"]
 [ext_resource type="PackedScene" uid="uid://dc8p134mw1bv7" path="res://scenes/button.tscn" id="3_b5n1q"]
-[ext_resource type="PackedScene" path="res://scenes/pressure_plate.tscn" id="3_eianx"]
+[ext_resource type="PackedScene" uid="uid://gw7trvnep73v" path="res://scenes/pressure_plate.tscn" id="3_eianx"]
 [ext_resource type="Texture2D" uid="uid://dlt7q0bxeto4c" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Door_Closed.png" id="3_v7l3u"]
-[ext_resource type="PackedScene" uid="uid://utkuixwybqwt" path="res://scenes/torch.tscn" id="4_w2n3w"]
+[ext_resource type="PackedScene" uid="uid://mhrp5qyucqar" path="res://scenes/torch.tscn" id="4_w2n3w"]
+[ext_resource type="Script" path="res://scripts/pressure_plate.gd" id="5_lec3k"]
 [ext_resource type="Texture2D" uid="uid://bybikx0vxqtpk" path="res://assets/YELLOWPAINT.png" id="5_r7l3u"]
 [ext_resource type="Texture2D" uid="uid://dc4pnmuihcpam" path="res://assets/CaveiraMedo.png" id="5_u4f1t"]
 [ext_resource type="PackedScene" uid="uid://bg5qj3j3mtkkj" path="res://scenes/enemy.tscn" id="7_5ctct"]
@@ -157,11 +158,12 @@ layer_1/tile_data = PackedInt32Array(65525, 262144, 1, 65526, 262144, 1, 65527, 
 z_index = 1
 position = Vector2(168, 0)
 
-[node name="Pressure Plate" parent="LevelFolder/Door" instance=ExtResource("3_eianx")]
-position = Vector2(-231, -56)
-
 [node name="Button1" parent="LevelFolder/Door" instance=ExtResource("3_b5n1q")]
 position = Vector2(-52, -9)
+
+[node name="Pressure Plate" parent="LevelFolder/Door" instance=ExtResource("3_eianx")]
+position = Vector2(-231, -56)
+script = ExtResource("5_lec3k")
 
 [node name="BARRIER" type="StaticBody2D" parent="LevelFolder"]
 z_index = 3
@@ -194,7 +196,7 @@ position = Vector2(116, -56)
 position = Vector2(-176, -32)
 
 [node name="SCENE TRANSITION" type="Area2D" parent="LevelFolder"]
-position = Vector2(186, -10)
+position = Vector2(188, -10)
 script = ExtResource("8_toq2t")
 nextLevel = "res://scenes/level_3.tscn"
 
@@ -211,4 +213,8 @@ zoom = Vector2(4, 4)
 [node name="enemy" parent="." instance=ExtResource("7_5ctct")]
 position = Vector2(138, -68)
 
+[connection signal="area_entered" from="LevelFolder/Door/Pressure Plate" to="enemy" method="_on_pressure_plate_area_entered"]
+[connection signal="area_exited" from="LevelFolder/Door/Pressure Plate" to="enemy" method="_on_pressure_plate_area_exited"]
 [connection signal="area_entered" from="LevelFolder/SCENE TRANSITION" to="LevelFolder/SCENE TRANSITION" method="_on_area_entered"]
+[connection signal="pressure0" from="enemy" to="LevelFolder/Door/Pressure Plate" method="_on_enemy_pressure_0"]
+[connection signal="pressure1" from="enemy" to="LevelFolder/Door/Pressure Plate" method="_on_enemy_pressure_1"]
