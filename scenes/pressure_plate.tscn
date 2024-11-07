@@ -1,13 +1,23 @@
 [gd_scene load_steps=4 format=3 uid="uid://gw7trvnep73v"]
 
-[ext_resource type="Script" path="res://scenes/pressure_plate.gd" id="1_6thyj"]
 [ext_resource type="Texture2D" uid="uid://lx1e32h3n3dg" path="res://assets/pressure_plate.png" id="2_tsmbr"]
+
+[sub_resource type="GDScript" id="GDScript_xrey0"]
+script/source = "extends Area2D
+
+func _on_area_entered(area: Area2D) -> void:
+	get_parent().SetNum(1)
+
+
+func _on_area_exited(area: Area2D) -> void:
+	get_parent().SetNum(-1)
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y4yjk"]
 size = Vector2(26, 7.5)
 
 [node name="Pressure Plate" type="Area2D"]
-script = ExtResource("1_6thyj")
+script = SubResource("GDScript_xrey0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 light_mask = 17
