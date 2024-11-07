@@ -1,13 +1,9 @@
 extends Area2D
 
+func _on_area_entered(area:Area2D):
+		print("a")
+		get_parent().SetNum(1)
 
-func _ready() -> void:
-	connect("area_entered",_on_area_entered)
-	connect("area_exited",_on_area_entered)
-
-
-
-func _process(delta: float) -> void:
-	pass
-func _on_area_entered():
-	pass
+func _on_area_exited(area: Area2D):
+		print("b")
+		get_parent().SetNum(-1)
