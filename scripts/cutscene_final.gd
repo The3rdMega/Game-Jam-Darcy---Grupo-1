@@ -8,12 +8,11 @@ func _ready():
 
 
 func _process(delta):
-	var frames = ["Cutscene2","Cutscene3","Cutscene4","Cutscene5","Cutscene6","Cutscene7"]
+	var frames = ["Cutscene2","Cutscene3","Cutscene4","Cutscene5","Cutscene6"]
 	if Input.is_action_just_pressed("Interact"):
-		get_tree().change_scene_to_file("res://scenes/game.tscn")
 		print("pressed")
 		CurrentFrame += 1
-		if CurrentFrame == 6:
-			get_tree().change_scene_to_file("res://scenes/game.tscn")
+		if CurrentFrame == 5:
+			get_tree().change_scene_to_file("res://scenes/Cutscene.tscn")
 		else:
 			Tela.play(frames[CurrentFrame])
