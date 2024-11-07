@@ -114,7 +114,12 @@ func _on_animated_sprite_2d_animation_finished():
 		rising = false
 		$AnimatedSprite2D.play("Idle")
 func dash(direction:int):
+<<<<<<< Updated upstream
 	velocity.x+= (30*SPEED*direction)
+=======
+	return
+	velocity.x+= (15*SPEED*direction)
+>>>>>>> Stashed changes
 	dash_timer.start()
 	canDash = false	
 	

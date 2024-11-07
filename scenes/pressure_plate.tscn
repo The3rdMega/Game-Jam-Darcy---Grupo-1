@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxr8y1jr4avim"]
+
+[ext_resource type="Script" path="res://scripts/pressure_plate.gd" id="1_3u4gf"]
+[ext_resource type="Texture2D" uid="uid://dhf5gjodtu8mk" path="res://assets/Katana/Katana.png" id="3_v0jhl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5x7uy"]
+size = Vector2(32, 7)
+
+[sub_resource type="GDScript" id="GDScript_tibyc"]
+script/source = "extends CollisionShape2D
+"
+
+[node name="PressurePlate" type="Area2D"]
+script = ExtResource("1_3u4gf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6, -1.5)
+shape = SubResource("RectangleShape2D_5x7uy")
+script = SubResource("GDScript_tibyc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_v0jhl")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -2,10 +2,18 @@
 
 [ext_resource type="PackedScene" uid="uid://cby1k0wccyf2p" path="res://scenes/player.tscn" id="1_s15gj"]
 [ext_resource type="Texture2D" uid="uid://cht1lh48vtwbv" path="res://assets/tileset/cavesofgallet_tiles.png" id="2_wf6xm"]
+<<<<<<< Updated upstream
 [ext_resource type="PackedScene" uid="uid://d3ae7hni41b1b" path="res://scenes/enemy.tscn" id="3_0cst4"]
 [ext_resource type="PackedScene" uid="uid://coc7t7xo7cxqp" path="res://scenes/door.tscn" id="4_pqyvn"]
 [ext_resource type="PackedScene" uid="uid://dc8p134mw1bv7" path="res://scenes/button.tscn" id="5_nsqsn"]
 [ext_resource type="Script" path="res://scripts/LevelTrigger.gd" id="6_cac4t"]
+=======
+[ext_resource type="PackedScene" uid="uid://bg5qj3j3mtkkj" path="res://scenes/enemy.tscn" id="3_0cst4"]
+[ext_resource type="PackedScene" uid="uid://coc7t7xo7cxqp" path="res://scenes/door.tscn" id="4_pqyvn"]
+[ext_resource type="PackedScene" uid="uid://dc8p134mw1bv7" path="res://scenes/button.tscn" id="5_nsqsn"]
+[ext_resource type="PackedScene" path="res://scenes/torch.tscn" id="6_p7ynl"]
+[ext_resource type="Script" path="res://scripts/LevelTrigger.gd" id="7_srghc"]
+>>>>>>> Stashed changes
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ej7a5"]
 texture = ExtResource("2_wf6xm")

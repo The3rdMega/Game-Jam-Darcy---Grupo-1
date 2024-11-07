@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=4 format=3 uid="uid://coc7t7xo7cxqp"]
+=======
+[gd_scene load_steps=5 format=3 uid="uid://coc7t7xo7cxqp"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Script" path="res://scripts/door.gd" id="1_mrdtq"]
 [ext_resource type="Texture2D" uid="uid://dlt7q0bxeto4c" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Door_Closed.png" id="1_nmxeb"]

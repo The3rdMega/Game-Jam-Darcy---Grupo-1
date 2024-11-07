@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6p7dlt76pxe1"]
+
+[sub_resource type="GDScript" id="GDScript_ubrvi"]
+script/source = "extends Area2D
+"
+
+[node name="Killzone" type="Area2D"]
+collision_mask = 2
+script = SubResource("GDScript_ubrvi")
