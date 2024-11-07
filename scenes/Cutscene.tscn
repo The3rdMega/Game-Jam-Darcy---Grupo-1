@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bxw6v3r1lbjib"]
+[gd_scene load_steps=53 format=3 uid="uid://nup4lgm0skbf"]
 
 [ext_resource type="Texture2D" uid="uid://cdlm1j735gkjt" path="res://assets/Cutscenes/Cutscene1.png" id="1_irwol"]
 [ext_resource type="Script" path="res://scripts/cutscene.gd" id="1_p3jru"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bsp7u7nsajos1" path="res://assets/Cutscenes/Cutscene5.png" id="6_ocuxk"]
 [ext_resource type="Texture2D" uid="uid://d23s0j46cuplg" path="res://assets/Cutscenes/Cutscene6.png" id="7_bl5n5"]
 [ext_resource type="Texture2D" uid="uid://rnco7u743b0n" path="res://assets/Cutscenes/Cutscene7.png" id="8_mkmua"]
+[ext_resource type="FontFile" uid="uid://cjk5tey7eg3l5" path="res://assets/m5x7.ttf" id="9_pxvr8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xa8r0"]
 atlas = ExtResource("1_irwol")
@@ -341,11 +342,33 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 script = ExtResource("1_p3jru")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(576, 326)
 sprite_frames = SubResource("SpriteFrames_cdv57")
-animation = &"Cutscene7"
+animation = &"Cutscene5"
 autoplay = "Cutscene1"
+
+[node name="Press[E]" type="Label" parent="."]
+offset_left = 22.0
+offset_top = 19.0
+offset_right = 278.0
+offset_bottom = 119.0
+theme_override_fonts/font = ExtResource("9_pxvr8")
+theme_override_font_sizes/font_size = 100
+text = "Press[E]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="História" type="Label" parent="."]
+offset_left = 1.0
+offset_top = 530.0
+offset_right = 1151.0
+offset_bottom = 630.0
+theme_override_fonts/font = ExtResource("9_pxvr8")
+theme_override_font_sizes/font_size = 70
+text = "2 irmãos foram explorar uma dungeon"
+horizontal_alignment = 1
+vertical_alignment = 1
