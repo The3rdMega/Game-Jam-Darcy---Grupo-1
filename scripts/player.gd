@@ -158,12 +158,21 @@ func dashTimeout():
 
 func _on_interaction_area_area_entered(area: Area2D) -> void:
 	if(area.has_method("button") or area.has_method("torch")):
+		if area.has_method("torch") and Is_ghost:
+			InteractLabel.text = "Press [E]"
+		else:
+			InteractLabel.text = ""
+		if area.has_method("button") and not Is_ghost:
+			InteractLabel.text = "Press [E]"
+		else:
+			InteractLabel.text = ""
 		interactor = area
 	
 
 func _on_interaction_area_area_exited(area: Area2D) -> void:
 	if(area == interactor):
 		interactor = null
+	InteractLabel.text = ""
 	
 
 func HandleInteraction() -> void:
@@ -171,15 +180,3 @@ func HandleInteraction() -> void:
 		interactor.button()
 	if interactor.has_method("torch") and Is_ghost:
 		interactor.torch()
-
-
-
-
-func _on_scene_transition_area_entered(area):
-	if(area.get_parent().name == "Player") and not Is_ghost:
-		get_tree().change_scene_to_file("res://scenes/level_2.tscn")
-
-
-func _on_scene_transition_2_area_entered(area):
-	if(area.get_parent().name == "Player") and not Is_ghost:
-		get_tree().change_scene_to_file("res://scenes/level_3.tscn")
