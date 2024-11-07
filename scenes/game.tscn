@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cht1lh48vtwbv" path="res://assets/tileset/cavesofgallet_tiles.png" id="2_wf6xm"]
 [ext_resource type="PackedScene" uid="uid://bg5qj3j3mtkkj" path="res://scenes/enemy.tscn" id="3_0cst4"]
 [ext_resource type="PackedScene" uid="uid://3jx4n1ulgr4v" path="res://scenes/door.tscn" id="4_pqyvn"]
-[ext_resource type="PackedScene" uid="uid://dc8p134mw1bv7" path="res://scenes/button.tscn" id="5_nsqsn"]
+[ext_resource type="PackedScene" uid="uid://q1v1ugr4cjjn" path="res://scenes/button.tscn" id="5_nsqsn"]
+[ext_resource type="PackedScene" uid="uid://mhrp5qyucqar" path="res://scenes/torch.tscn" id="6_p7ynl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ej7a5"]
 texture = ExtResource("2_wf6xm")
@@ -138,8 +139,6 @@ sources/0 = SubResource("TileSetAtlasSource_ej7a5")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqr6m"]
 size = Vector2(20, 32)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_us7pb"]
-
 [node name="Game" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -163,39 +162,21 @@ collision_enabled = false
 [node name="Door" parent="." instance=ExtResource("4_pqyvn")]
 position = Vector2(94, 0)
 
-[node name="DoorInteraction" parent="Door" instance=ExtResource("5_nsqsn")]
-position = Vector2(-26, -10)
-interact_label = "Press [E]"
-interact_type = "emit_button_signal"
-interact_value = "it works"
+[node name="button" parent="Door" instance=ExtResource("5_nsqsn")]
+position = Vector2(-25, -7)
 
-[node name="DoorInteraction2" parent="Door" instance=ExtResource("5_nsqsn")]
-position = Vector2(-72, -9)
-interact_label = "Press [E]"
-interact_type = "emit_button_signal"
-interact_value = "it works"
-
-[node name="GhostInteraciton" parent="Door" instance=ExtResource("5_nsqsn")]
-position = Vector2(71, -23)
-interact_label = "Press [E]"
-interact_type = "emit_torch_signal"
-interact_value = "it works"
-
-[node name="GhostInteraciton2" parent="Door" instance=ExtResource("5_nsqsn")]
-position = Vector2(36, -70)
-interact_label = "Press [E]"
-interact_type = "emit_torch_signal"
-interact_value = "it works"
+[node name="torch" parent="Door" instance=ExtResource("6_p7ynl")]
+position = Vector2(73, -22)
 
 [node name="Player" parent="." instance=ExtResource("1_s15gj")]
-position = Vector2(-10, -4)
+position = Vector2(12, -36)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
 [node name="enemy" parent="." instance=ExtResource("3_0cst4")]
-position = Vector2(54, -49)
+position = Vector2(100, -91)
 
 [node name="SCENE TRANSITION" type="Area2D" parent="."]
 position = Vector2(186, -10)
@@ -204,27 +185,4 @@ position = Vector2(186, -10)
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_uqr6m")
 
-[node name="Door2" parent="." instance=ExtResource("4_pqyvn")]
-position = Vector2(33, -25)
-
-[node name="Door3" type="Node2D" parent="."]
-
-[node name="Area2D" type="Area2D" parent="Door3"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door3/Area2D"]
-visible = false
-shape = SubResource("CircleShape2D_us7pb")
-disabled = true
-
-[node name="Area2D2" type="Area2D" parent="Door3"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door3/Area2D2"]
-visible = false
-shape = SubResource("CircleShape2D_us7pb")
-disabled = true
-
-[connection signal="area_entered" from="Door/DoorInteraction" to="Player" method="_on_button_area_entered"]
-[connection signal="area_exited" from="Door/DoorInteraction" to="Player" method="_on_button_area_exited"]
-[connection signal="area_entered" from="Door/DoorInteraction2" to="Player" method="_on_button_area_entered"]
-[connection signal="area_exited" from="Door/DoorInteraction2" to="Player" method="_on_button_area_exited"]
 [connection signal="area_entered" from="SCENE TRANSITION" to="Player" method="_on_scene_transition_area_entered"]

@@ -157,7 +157,7 @@ func dashTimeout():
 
 
 func _on_interaction_area_area_entered(area: Area2D) -> void:
-	if(area.has_method("button")):
+	if(area.has_method("button") or area.has_method("torch")):
 		interactor = area
 	
 
@@ -169,7 +169,7 @@ func _on_interaction_area_area_exited(area: Area2D) -> void:
 func HandleInteraction() -> void:
 	if interactor.has_method("button") and !Is_ghost:
 		interactor.button()
-	if interactor.has_method("button") and Is_ghost:
+	if interactor.has_method("torch") and Is_ghost:
 		interactor.torch()
 
 

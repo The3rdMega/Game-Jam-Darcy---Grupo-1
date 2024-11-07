@@ -5,7 +5,7 @@ extends Area2D
 
 var activated = false
 
-func button() -> void:
+func torch() -> void:
 	if activated == false:
 		$Sprite2D.texture = load("res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/InteractionACTIVATED.png")
 		activated = true

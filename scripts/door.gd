@@ -30,6 +30,7 @@ func CloseDoor():
 
 func SetNum(n:int):
 	buttonsPressed+=n
+	print(buttonsPressed)
 	if(buttonsPressed == childCount):
 		OpenDoor()
 		return
