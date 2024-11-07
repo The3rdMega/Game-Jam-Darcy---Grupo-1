@@ -169,8 +169,20 @@ interact_label = "Press [E]"
 interact_type = "emit_button_signal"
 interact_value = "it works"
 
+[node name="DoorInteraction2" parent="Door" instance=ExtResource("5_nsqsn")]
+position = Vector2(-72, -9)
+interact_label = "Press [E]"
+interact_type = "emit_button_signal"
+interact_value = "it works"
+
 [node name="GhostInteraciton" parent="Door" instance=ExtResource("5_nsqsn")]
 position = Vector2(71, -23)
+interact_label = "Press [E]"
+interact_type = "emit_torch_signal"
+interact_value = "it works"
+
+[node name="GhostInteraciton2" parent="Door" instance=ExtResource("5_nsqsn")]
+position = Vector2(36, -70)
 interact_label = "Press [E]"
 interact_type = "emit_torch_signal"
 interact_value = "it works"
@@ -213,4 +225,6 @@ disabled = true
 
 [connection signal="area_entered" from="Door/DoorInteraction" to="Player" method="_on_button_area_entered"]
 [connection signal="area_exited" from="Door/DoorInteraction" to="Player" method="_on_button_area_exited"]
+[connection signal="area_entered" from="Door/DoorInteraction2" to="Player" method="_on_button_area_entered"]
+[connection signal="area_exited" from="Door/DoorInteraction2" to="Player" method="_on_button_area_exited"]
 [connection signal="area_entered" from="SCENE TRANSITION" to="Player" method="_on_scene_transition_area_entered"]

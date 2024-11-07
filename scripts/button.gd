@@ -8,11 +8,14 @@ var activated = false
 func button() -> void:
 	if activated == false:
 		$Sprite2D.texture = load("res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/InteractionACTIVATED.png")
-		activated = true	
+		activated = true
+		get_parent().SetNum(1)
+
 	else:
 		$Sprite2D.texture = load("res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Interaction.png")
 		activated = false
-	get_parent().OpenDoor()
+		get_parent().SetNum(-1)
+
 
 
 

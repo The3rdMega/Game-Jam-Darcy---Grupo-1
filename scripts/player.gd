@@ -13,7 +13,7 @@ var dash_timer: Timer
 var collider:CollisionShape2D
 var rising = false
 var animator: AnimatedSprite2D
-
+var interactor: Area2D
 @onready var allInteractions = []
 @onready var InteractLabel = $InteractionComponents/InteractionLabel
 
@@ -35,9 +35,8 @@ func _physics_process(delta: float) -> void:
 	
 	
 	
-	if Input.is_action_just_pressed("Interact"):
-		ExecuteInteraction()
-	
+	if Input.is_action_just_pressed("Interact") and interactor != null:
+		HandleInteraction()	
 	
 	if(Is_ghost):
 		GhostControl()
@@ -153,38 +152,27 @@ func dash(direction:int):
 func dashTimeout():
 	canDash = true
 	print("not")
+	
+	
 
 
 func _on_interaction_area_area_entered(area: Area2D) -> void:
-	allInteractions.insert(0, area)
-	HandleInteraction()
+	if(area.has_method("button")):
+		interactor = area
 	
 
 func _on_interaction_area_area_exited(area: Area2D) -> void:
-	allInteractions.erase(area)
-	HandleInteraction()
+	if(area == interactor):
+		interactor = null
+	
 
 func HandleInteraction() -> void:
-	if allInteractions:
-		InteractLabel.text = allInteractions[0].interact_label
-	else:
-		InteractLabel.text = ''
+	if interactor.has_method("button") and !Is_ghost:
+		interactor.button()
+	if interactor.has_method("button") and Is_ghost:
+		interactor.torch()
 
-signal ButtonPressed
-signal TorchPressed
 
-func ExecuteInteraction() -> void:
-	if allInteractions:
-		var cur_interaction = allInteractions[0]
-		match cur_interaction.interact_type:
-			"print_text": print(cur_interaction.interact_value)
-			"emit_button_signal":
-				if not Is_ghost:
-					ButtonPressed.emit()
-			"emit_torch_signal":
-				if Is_ghost:
-					print("emitiu sinal da tocha")
-					TorchPressed.emit()
 
 
 func _on_scene_transition_area_entered(area):
