@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cht1lh48vtwbv" path="res://assets/tileset/cavesofgallet_tiles.png" id="2_wf6xm"]
 [ext_resource type="PackedScene" uid="uid://bg5qj3j3mtkkj" path="res://scenes/enemy.tscn" id="3_0cst4"]
 [ext_resource type="PackedScene" uid="uid://3jx4n1ulgr4v" path="res://scenes/door.tscn" id="4_pqyvn"]
-[ext_resource type="PackedScene" uid="uid://dc8p134mw1bv7" path="res://scenes/button.tscn" id="5_nsqsn"]
+[ext_resource type="PackedScene" uid="uid://q1v1ugr4cjjn" path="res://scenes/button.tscn" id="5_nsqsn"]
 [ext_resource type="PackedScene" uid="uid://mhrp5qyucqar" path="res://scenes/torch.tscn" id="6_p7ynl"]
 [ext_resource type="Script" path="res://scripts/LevelTrigger.gd" id="7_lro85"]
 
@@ -224,9 +224,10 @@ position = Vector2(100, -91)
 [node name="SCENE TRANSITION" type="Area2D" parent="."]
 position = Vector2(186, -10)
 script = ExtResource("7_lro85")
+nextLevel = "res://scenes/level_2.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SCENE TRANSITION"]
-position = Vector2(198, -53)
+position = Vector2(195, -45)
 shape = SubResource("RectangleShape2D_uqr6m")
 
 [connection signal="area_entered" from="SCENE TRANSITION" to="Player" method="_on_scene_transition_area_entered"]
