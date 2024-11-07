@@ -17,10 +17,16 @@ func _physics_process(delta: float) -> void:
 			position.x -= (player.position.x - position.x)/speed
 			
 		$AnimatedSprite2D.play("walk")
-		if (player.position.x - position.x) < 0:
-			$AnimatedSprite2D.flip_h = true
+		if tipo == "fantasma":
+			if (player.position.x - position.x) < 0:
+				$AnimatedSprite2D.flip_h = false
+			else:
+				$AnimatedSprite2D.flip_h = true
 		else:
-			$AnimatedSprite2D.flip_h = false
+			if (player.position.x - position.x) < 0:
+				$AnimatedSprite2D.flip_h = true
+			else:
+				$AnimatedSprite2D.flip_h = false
 		
 	else:
 		$AnimatedSprite2D.play("idle")

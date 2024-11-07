@@ -169,15 +169,18 @@ position = Vector2(-25, -7)
 [node name="torch" parent="Door" instance=ExtResource("6_p7ynl")]
 position = Vector2(73, -22)
 
+[node name="button2" parent="Door" instance=ExtResource("5_nsqsn")]
+position = Vector2(-34, -39)
+
 [node name="Player" parent="." instance=ExtResource("1_s15gj")]
-position = Vector2(12, -36)
+position = Vector2(8, -82)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
 [node name="enemy" parent="." instance=ExtResource("3_0cst4")]
-position = Vector2(100, -91)
+position = Vector2(112, -91)
 
 [node name="SCENE TRANSITION" type="Area2D" parent="."]
 position = Vector2(186, -10)
