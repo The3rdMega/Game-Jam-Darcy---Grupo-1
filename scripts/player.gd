@@ -171,15 +171,3 @@ func HandleInteraction() -> void:
 		interactor.button()
 	if interactor.has_method("torch") and Is_ghost:
 		interactor.torch()
-
-
-
-
-func _on_scene_transition_area_entered(area):
-	if(area.get_parent().name == "Player") and not Is_ghost:
-		get_tree().change_scene_to_file("res://scenes/level_2.tscn")
-
-
-func _on_scene_transition_2_area_entered(area):
-	if(area.get_parent().name == "Player") and not Is_ghost:
-		get_tree().change_scene_to_file("res://scenes/level_3.tscn")
