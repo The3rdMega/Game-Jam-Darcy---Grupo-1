@@ -158,6 +158,9 @@ z_index = 1
 position = Vector2(168, 0)
 
 [node name="Pressure Plate" parent="LevelFolder/Door" instance=ExtResource("4_p7ka0")]
+position = Vector2(-227, -56)
+collision_layer = 17
+collision_mask = 17
 
 [node name="Button1" parent="LevelFolder/Door" instance=ExtResource("3_b5n1q")]
 position = Vector2(-52, -9)

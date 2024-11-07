@@ -4,18 +4,25 @@
 [ext_resource type="Texture2D" uid="uid://lx1e32h3n3dg" path="res://assets/pressure_plate.png" id="2_tsmbr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y4yjk"]
-size = Vector2(26, 7)
+size = Vector2(26, 7.5)
 
 [node name="Pressure Plate" type="Area2D"]
 script = ExtResource("1_6thyj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-93, -14)
+light_mask = 17
+visibility_layer = 17
+position = Vector2(0, -15)
 texture = ExtResource("2_tsmbr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-93, -2.5)
+light_mask = 19
+visibility_layer = 19
+position = Vector2(0, -3.25)
 shape = SubResource("RectangleShape2D_y4yjk")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(0, -3.25)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
