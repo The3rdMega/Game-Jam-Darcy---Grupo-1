@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cby1k0wccyf2p"]
+[gd_scene load_steps=37 format=3 uid="uid://cby1k0wccyf2p"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_vf0wm"]
 [ext_resource type="Texture2D" uid="uid://dcog4m6qbo555" path="res://assets/SAMURAI PLAYER/Samurai_Ghost.png" id="2_frl86"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://cjk5tey7eg3l5" path="res://assets/m5x7.ttf" id="5_amynp"]
 [ext_resource type="Texture2D" uid="uid://b8ymsb15e4y3n" path="res://assets/SAMURAI PLAYER/Samurai_Walk.png" id="5_ia62q"]
 [ext_resource type="AudioStream" uid="uid://d0r5sq1d6e7h3" path="res://sounds/stone_footstep2.mp3" id="7_21ra8"]
+[ext_resource type="AudioStream" uid="uid://dpjuqexleqqiq" path="res://sounds/jump_sound.mp3" id="8_8vas5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5y3m3"]
 atlas = ExtResource("2_frl86")
@@ -267,6 +268,9 @@ shape = SubResource("CircleShape2D_iype8")
 
 [node name="AudioWalk" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_21ra8")
+
+[node name="AudioJump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_8vas5")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

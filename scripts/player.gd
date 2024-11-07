@@ -18,6 +18,7 @@ var interactor: Area2D
 @onready var InteractLabel = $InteractionComponents/InteractionLabel
 
 @onready var playerAudioWalk = $AudioWalk
+@onready var playerAudioJump = $AudioJump
 
 func _ready() -> void:
 	animator = get_node("AnimatedSprite2D")
@@ -116,6 +117,8 @@ func PlayerControl(delta:float):
 
 	if (Input.is_key_pressed(KEY_SPACE) or Input.is_key_pressed(KEY_W) ) and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		if playerAudioJump.playing == false and is_on_floor():
+			playerAudioJump.play()
 
 	if Input.is_key_pressed(KEY_A):
 		velocity.x += -SPEED

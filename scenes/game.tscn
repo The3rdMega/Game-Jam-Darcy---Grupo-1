@@ -252,5 +252,6 @@ texture = ExtResource("8_vnmnl")
 [node name="Background Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_gl324")
 volume_db = -10.0
+bus = &"Music"
 
 [connection signal="area_entered" from="SCENE TRANSITION" to="Player" method="_on_scene_transition_area_entered"]
