@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://3jx4n1ulgr4v" path="res://scenes/door.tscn" id="2_ygsbk"]
 [ext_resource type="PackedScene" uid="uid://dc8p134mw1bv7" path="res://scenes/button.tscn" id="3_b5n1q"]
 [ext_resource type="Texture2D" uid="uid://dlt7q0bxeto4c" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Door_Closed.png" id="3_v7l3u"]
-[ext_resource type="PackedScene" uid="uid://cioorl6hqtjnn" path="res://scenes/torch.tscn" id="4_w2n3w"]
+[ext_resource type="PackedScene" uid="uid://utkuixwybqwt" path="res://scenes/torch.tscn" id="4_w2n3w"]
 [ext_resource type="Texture2D" uid="uid://bybikx0vxqtpk" path="res://assets/YELLOWPAINT.png" id="5_r7l3u"]
 [ext_resource type="Texture2D" uid="uid://dc4pnmuihcpam" path="res://assets/CaveiraMedo.png" id="5_u4f1t"]
 [ext_resource type="PackedScene" uid="uid://bg5qj3j3mtkkj" path="res://scenes/enemy.tscn" id="7_5ctct"]

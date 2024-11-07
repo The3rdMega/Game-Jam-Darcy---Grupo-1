@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cioorl6hqtjnn"]
+[gd_scene load_steps=4 format=3 uid="uid://utkuixwybqwt"]
 
 [ext_resource type="Script" path="res://scripts/torch.gd" id="1_v38tk"]
 [ext_resource type="Texture2D" uid="uid://dp0ldakk4de0u" path="res://assets/Tiny RPG Character Asset Pack v1.03 -Free Soldier&Orc/Interaction.png" id="2_e6jrg"]
