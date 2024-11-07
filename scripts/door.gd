@@ -16,14 +16,14 @@ func _ready() -> void:
 
 func OpenDoor():
 		$Sprite2D.texture = load(open.resource_path)
-		get_node("CollisionShape2D").disabled = true
+		get_node("CollisionShape2D").set_deferred("disabled",true)
 		Door_Closed = false
 
 
 
 func CloseDoor():
 		$Sprite2D.texture = load(closed.resource_path)
-		get_node("CollisionShape2D").disabled = false
+		get_node("CollisionShape2D").set_deferred("disabled",false)
 		Door_Closed = true
 
 
