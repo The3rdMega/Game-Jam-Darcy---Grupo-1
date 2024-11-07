@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmqq3ockd7o12"]
+
+[ext_resource type="Texture2D" path="res://assets/pressure_plate.png" id="2_tsmbr"]
+
+[sub_resource type="GDScript" id="GDScript_xrey0"]
+script/source = "extends Area2D
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y4yjk"]
+size = Vector2(26, 7.5)
+
+[node name="Pressure Plate" type="Area2D"]
+script = SubResource("GDScript_xrey0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 17
+visibility_layer = 17
+position = Vector2(0, -15)
+texture = ExtResource("2_tsmbr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 19
+visibility_layer = 19
+position = Vector2(0, -3.25)
+shape = SubResource("RectangleShape2D_y4yjk")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(0, -3.25)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
