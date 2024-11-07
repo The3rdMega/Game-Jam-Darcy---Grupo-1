@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://nu3k831fc2qy"]
+[gd_scene load_steps=15 format=3 uid="uid://nu3k831fc2qy"]
 
 [ext_resource type="Texture2D" uid="uid://cht1lh48vtwbv" path="res://assets/tileset/cavesofgallet_tiles.png" id="1_qoh4j"]
 [ext_resource type="PackedScene" uid="uid://cby1k0wccyf2p" path="res://scenes/player.tscn" id="2_wngy7"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bybikx0vxqtpk" path="res://assets/YELLOWPAINT.png" id="5_r7l3u"]
 [ext_resource type="Texture2D" uid="uid://dc4pnmuihcpam" path="res://assets/CaveiraMedo.png" id="5_u4f1t"]
 [ext_resource type="PackedScene" uid="uid://bg5qj3j3mtkkj" path="res://scenes/enemy.tscn" id="7_5ctct"]
+[ext_resource type="Script" path="res://scripts/LevelTrigger.gd" id="8_toq2t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xpbfh"]
 texture = ExtResource("1_qoh4j")
@@ -135,6 +136,9 @@ sources/0 = SubResource("TileSetAtlasSource_xpbfh")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3jqv"]
 size = Vector2(9, 24)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iae6s"]
+size = Vector2(20, 32)
+
 [node name="Level 2" type="Node2D"]
 
 [node name="LevelFolder" type="Node2D" parent="."]
@@ -185,6 +189,15 @@ position = Vector2(116, -56)
 [node name="torch" parent="LevelFolder/Door2" instance=ExtResource("4_w2n3w")]
 position = Vector2(-176, -32)
 
+[node name="SCENE TRANSITION" type="Area2D" parent="LevelFolder"]
+position = Vector2(186, -10)
+script = ExtResource("8_toq2t")
+nextLevel = "res://scenes/level_3.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelFolder/SCENE TRANSITION"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_iae6s")
+
 [node name="Player" parent="." instance=ExtResource("2_wngy7")]
 z_index = 2
 
@@ -193,3 +206,5 @@ zoom = Vector2(4, 4)
 
 [node name="enemy" parent="." instance=ExtResource("7_5ctct")]
 position = Vector2(138, -68)
+
+[connection signal="area_entered" from="LevelFolder/SCENE TRANSITION" to="LevelFolder/SCENE TRANSITION" method="_on_area_entered"]
