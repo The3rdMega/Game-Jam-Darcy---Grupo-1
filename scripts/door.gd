@@ -35,9 +35,6 @@ func SetNum(n:int):
 		OpenDoor()
 		return
 	CloseDoor()
-	
-	
-	
 
 func _on_door_interaction_area_entered(area: Area2D) -> void:
 	pass # Replace with function body.
