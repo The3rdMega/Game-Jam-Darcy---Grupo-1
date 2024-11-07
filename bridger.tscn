@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgxrmf7go5qcl"]
+
+[ext_resource type="Script" path="res://scripts/bridge.gd" id="1_bcupg"]
+[ext_resource type="Texture2D" uid="uid://ils7244bkob1" path="res://assets/PonteFechada.png" id="2_q3jar"]
+[ext_resource type="Texture2D" uid="uid://binu12ti7cw0p" path="res://assets/PonteAberta.png" id="3_sd34t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwm4x"]
+size = Vector2(64, 29)
+
+[node name="Area2D" type="Area2D"]
+position = Vector2(77, -10)
+script = ExtResource("1_bcupg")
+closed = ExtResource("2_q3jar")
+open = ExtResource("3_sd34t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-6.745, 21.665)
+scale = Vector2(1.21, 1.21)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 33)
+shape = SubResource("RectangleShape2D_lwm4x")
