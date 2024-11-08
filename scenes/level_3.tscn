@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://cvcu4iftsjlgv"]
+[gd_scene load_steps=11 format=4 uid="uid://cg5o0yo5jayjo"]
 
 [ext_resource type="PackedScene" uid="uid://cby1k0wccyf2p" path="res://scenes/player.tscn" id="1_i8tnb"]
 [ext_resource type="Texture2D" uid="uid://cht1lh48vtwbv" path="res://assets/tileset/cavesofgallet_tiles.png" id="2_cuk8o"]
