@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsgb7r55inssv"]
+
+[ext_resource type="AudioStream" uid="uid://i2sif4j576ph" path="res://sounds/background_jazz.mp3" id="1_38d64"]
+[ext_resource type="Script" path="res://node_2d.gd" id="1_eqrph"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_eqrph")
+
+[node name="Background Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_38d64")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"

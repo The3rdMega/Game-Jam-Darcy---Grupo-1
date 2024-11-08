@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://3maok8bgxv8d"]
+[gd_scene load_steps=18 format=4 uid="uid://3maok8bgxv8d"]
 
 [ext_resource type="PackedScene" uid="uid://cby1k0wccyf2p" path="res://scenes/player.tscn" id="1_s15gj"]
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_vmgaw"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://bdfwlf6t0k0s8" path="res://assets/PlayerTutorial.png" id="7_ij4vl"]
 [ext_resource type="Script" path="res://scripts/LevelTrigger.gd" id="7_lro85"]
 [ext_resource type="Texture2D" uid="uid://brvpr58uvwwal" path="res://assets/GhostTutorial.png" id="8_vnmnl"]
-[ext_resource type="AudioStream" uid="uid://i2sif4j576ph" path="res://sounds/background_jazz.mp3" id="10_gl324"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_5e2y5"]
 tile_data = PackedInt32Array(0, 65536, 1, 65536, 65536, 2, 131072, 0, 0, 196608, 0, 0, 1, 65536, 1, 65537, 0, 0, 131073, 0, 0, 196609, 0, 0, 2, 65536, 1, 65538, 0, 0, 131074, 0, 0, 196610, 0, 0, 3, 65536, 1, 65539, 0, 0, 131075, 0, 0, 196611, 0, 0)
@@ -248,10 +247,5 @@ position = Vector2(119, -73)
 scale = Vector2(0.1, 0.1)
 skew = 0.228638
 texture = ExtResource("8_vnmnl")
-
-[node name="Background Music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_gl324")
-volume_db = -10.0
-bus = &"Music"
 
 [connection signal="area_entered" from="SCENE TRANSITION" to="Player" method="_on_scene_transition_area_entered"]
